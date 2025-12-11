@@ -3,24 +3,27 @@ package com.ecs160.hw;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.ecs160.persistence.*; 
 
-import com.ecs160.hw.util.*;
-import com.ecs160.hw.model.*;
+import com.ecs160.hw.model.Issue;
+import com.ecs160.hw.model.Repo;
+import com.ecs160.hw.util.SelectedRepoData;
+import com.ecs160.hw.util.SelectedRepoLoader;
+import com.ecs160.persistence.RedisDB;
 import com.google.gson.Gson;
 
 
 public class App  {
+
+    final static int hw4_port = 30000;
+
     public static void main(String[] args) {
         Gson gson = new Gson();
 
         RedisDB db = new RedisDB("localhost", 6379);
-
-        //HttpFetcher httpFetcher = new HttpFetcher(8000);
 
         // parse selected_repo.dat for repo id
         SelectedRepoData data = SelectedRepoLoader.loadSelectedRepo();
@@ -36,7 +39,7 @@ public class App  {
         System.out.println("Loaded repo: " + repo.getName());
 
         // clone the repo
-        HttpFetcher fetcher = new HttpFetcher(8000);
+        HttpFetcher fetcher = new HttpFetcher(hw4_port);
         String cloneUrl = repo.getHtmlUrl() + ".git";
         try {
             fetcher.cloneRepo(cloneUrl, repo.getName());
@@ -115,20 +118,14 @@ public class App  {
         String ListofIssuesList1and2JsonString = gson.toJson(ListofIssuesList1and2);
 
         try{
-            simularitiesList = fetcher.httpRequestNeat("/check_equivalence", ListofIssuesList1and2JsonString);
+            // simularitiesList = fetcher.httpRequestNeat("/check_equivalence", ListofIssuesList1and2JsonString);
+            simularitiesList = fetcher.httpRequestNeat("/compare_issues", ListofIssuesList1and2JsonString);
             System.out.println(simularitiesList);
             }
             catch(IOException e) {
                 System.out.println(e.getMessage());
         }
-        
 
-
-        //make it a map of files to do indivudally
-        //then make sure its in the format when passing into the thing
-        // Map <String, String> files = new HashMap;
-        // then make a gson object from this and do whatever
-        // then pass that into the thing
 
     }
 }
