@@ -12,7 +12,7 @@
 
     ollama serve
   
-#### Run Springboot framework in 'microservices':
+#### Run Spring Boot framework in 'microservices':
     cd microservices
     mvn spring-boot:run
 *Should see "Started SpringBootApp in x seconds..."*
