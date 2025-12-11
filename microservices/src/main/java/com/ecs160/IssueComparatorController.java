@@ -1,7 +1,7 @@
 package com.ecs160;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,8 +13,8 @@ public class IssueComparatorController {
         this.adapter = adapter;
     }
 
-    @GetMapping("/compare_issues")
-    public String compareIssues(@RequestParam("issues") String issueJsonArray) {
+    @PostMapping("/compare_issues")
+    public String compareIssues(@RequestBody String issueJsonArray) {
         return adapter.compareIssues(issueJsonArray);
     }
 }
