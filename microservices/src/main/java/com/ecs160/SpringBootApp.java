@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class App 
+public class SpringBootApp 
 {
     public static void main( String[] args )
     {
@@ -14,7 +14,7 @@ public class App
         // summarize the issue call llm
         //System.out.println( "Starting Server on port" + port + "!" );
 
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(SpringBootApp.class, args);
 
 
     }
