@@ -38,7 +38,7 @@ This empty output means that the system was unable to find any matching or simil
     {"bug_type": "unknown", "line": "undefined", "description": "", "filename": "undefined"}
     ]
 
-In case 3, our system produced output that technically contained bug information but was poorly formatted or compressed. Even when explicitly told to return a structured JSON object, ollama sometimes ignores parts of the prompt or produces compressed or loosely formatted output.
+In case 3, our system produced output that technically contained bug information but was poorly formatted or compressed. Even when explicitly told to return a structured JSON object ollama sometimes ignores parts of the prompt.
 
 ## Conclusion:
 The issues observed in the three cases are caused by limitations in the ollama’s ability to follow instructions rather than problems with the microservice design or the Spring Boot integration.
