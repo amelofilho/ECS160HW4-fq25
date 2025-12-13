@@ -1,7 +1,5 @@
 # Analysis:
 
-Our Issue Summarizer, Bug Finder and Issue Comparator microservices were wrapped with Spring Boot controllers and deployed as REST endpoints running on port 30000. 
-
 Our system was able to load the target repo from Redis, clone the repo locally, summarize all open GitHub issues, analyze selected.repo.dat for bugs and  compare the two resulting issue lists. Our application summarized 36 GitHub issues and analyzed 4 source files. We ran into a few cases: 
 
 ## Case 1:
@@ -43,4 +41,4 @@ In case 3, our system produced output that technically contained bug information
 ## Conclusion:
 The issues observed in the three cases are caused by limitations in the ollama’s ability to follow instructions rather than problems with the microservice design or the Spring Boot integration.
 
-From a functional standpoint there's no noticeable difference between HW2 and HW4. The microservice logic didn't change and the system behaves the same way as before. Moving to Spring Boot didn't require rewriting any microservice code or changing how data flows through the system. The only changes needed in main-app were updating the service port from 8000 to 30000 and switching the issue comparison endpoint to /compare_issues. Other than these small updates main-app ran exactly the same as it did in HW2.
+From a functional standpoint there's no noticeable difference between HW2 and HW4. The microservice logic didn't change and the system behaves the same way as before. Moving to Spring Boot didn't require rewriting any microservice code or changing how data flows through the system. The only changes needed in main-app were updating the service port from 8000 to 30000. Other than these small updates main-app ran exactly the same as it did in HW2.
