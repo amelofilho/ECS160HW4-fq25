@@ -93,10 +93,10 @@ public class RedisDB {
 
             map.put("__class__", clazz.getName());
             jedis.hset(key, map);
-            String info = jedis.info("persistence");
-            if (!info.contains("rdb_bgsave_in_progress:1")) {
-                jedis.bgsave();
-            }
+            // String info = jedis.info("persistence");
+            // if (!info.contains("rdb_bgsave_in_progress:1")) {
+            //     jedis.bgsave();
+            // }
             return true;
         } catch (IllegalAccessException e) {
             System.err.println("Access error: " + e.getMessage());

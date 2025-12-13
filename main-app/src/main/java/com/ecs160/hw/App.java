@@ -118,8 +118,7 @@ public class App  {
         String ListofIssuesList1and2JsonString = gson.toJson(ListofIssuesList1and2);
 
         try{
-            // simularitiesList = fetcher.httpRequestNeat("/check_equivalence", ListofIssuesList1and2JsonString);
-            simularitiesList = fetcher.httpRequestNeat("/compare_issues", ListofIssuesList1and2JsonString);
+            simularitiesList = fetcher.httpRequestNeat("/check_equivalence", ListofIssuesList1and2JsonString);
             System.out.println(simularitiesList);
             }
             catch(IOException e) {

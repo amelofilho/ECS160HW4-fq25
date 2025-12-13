@@ -2,17 +2,19 @@ package com.ecs160.microservices;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.ecs160.annotations.Endpoint;
 import com.ecs160.annotations.Microservice;
 import java.lang.reflect.Type;
 
 import java.io.IOException;
 import java.util.Map;
 
-import com.ecs160.annotations.Endpoint;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 // uncomment the annotations when you have created them
-@Microservice
+@RestController
 public class BugFinderMicroservice {
     private static final Gson gson = new Gson();
     private static final Type type = new TypeToken<Map<String, String>>() {}.getType();
@@ -21,8 +23,8 @@ public class BugFinderMicroservice {
 
     }
     
-    @Endpoint(url = "/find_bugs")
-    public String findBugs(String code) {
+    @PostMapping("/find_bugs")
+    public String findBugs(@RequestBody String code) {
         Map<String, String> map = gson.fromJson(code, type);
         String Cfile_content = map.get("file_content");
         String cfile_name = map.get("file_name");

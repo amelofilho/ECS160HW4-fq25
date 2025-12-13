@@ -11,12 +11,17 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
-import com.ecs160.annotations.Endpoint;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 // uncomment the above imports when the annotations are created
 
-@Microservice
+@RestController
 public class IssueComparatorMicroservice {
     
     private static final Gson gson = new Gson();
@@ -26,8 +31,8 @@ public class IssueComparatorMicroservice {
 
     }
     
-    @Endpoint(url = "/check_equivalence")
-    public String checkEquivalence(String issueJSonArray) {
+    @PostMapping("/compare_issues")
+    public String checkEquivalence(@RequestBody String issueJSonArray) {
         //parse into list then back to json string
         Map<String, List<String>> map = gson.fromJson(issueJSonArray, type);
         List<String> issuelist1 = map.get("issueList1");
